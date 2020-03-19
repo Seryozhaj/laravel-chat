@@ -12,7 +12,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #69C6FF;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -45,7 +45,10 @@
             }
 
             .title {
-                font-size: 84px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                font-size: 35px;
             }
 
             .links > a {
@@ -57,6 +60,29 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            label{
+                display: block;
+            }
+            input{
+                margin:10px 0;
+            }
+            .addchat{
+                position: absolute;
+                left: 10px;
+                top: 80px;
+            }
+            .mychats{
+                position: absolute;
+                font-size: 33px;
+                border: 1px dashed;
+                padding: 0px 60px;
+                top: 55px;
+
+            }
+            .mychats p{
+                position: relative;
+                bottom: 30px;
+            }
 
             .m-b-md {
                 margin-bottom: 30px;
@@ -64,12 +90,12 @@
         </style>
     </head>
     <body>
-    <a href="/chat">Chat</a>
+    <!-- <a href="/chat">Chat</a> -->
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/chat') }}">Chat</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -82,20 +108,20 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Hello {{ Auth::user()->name }}
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <form class="addchat">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Creat chate name</label>
+                        <input id="text" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
+                    </div>
+                    <button onclick="myFunction()" id="create" type="submit" class="btn btn-primary create">New Chat</button>
+                </form>
+            </div>
+            <div class="mychats">
+                <p >My chats</p>
             </div>
         </div>
+        <script src="js/my.js"></script>
     </body>
 </html>
