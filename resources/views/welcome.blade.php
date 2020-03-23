@@ -110,16 +110,20 @@
                 <div class="title m-b-md">
                     Hello {{ Auth::user()->name }}
                 </div>
-                <form class="addchat">
+                <form class="addchat" method="POST" action="/">         
+            @csrf          
                     <div class="form-group">
                         <label for="exampleInputEmail1">Creat chate name</label>
-                        <input id="text" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
+                        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
                     </div>
-                    <button onclick="myFunction()" id="create" type="submit" class="btn btn-primary create">New Chat</button>
-                </form>
+                    <button  id="create" type="submit" class="btn btn-primary create">New Chat</button>
+                </form> 
             </div>
             <div class="mychats">
                 <p >My chats</p>
+                @foreach($room as $name)
+                    {{$name -> name}}
+                @endforeach 
             </div>
         </div>
         <script src="js/my.js"></script>

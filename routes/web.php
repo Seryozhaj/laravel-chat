@@ -10,12 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'RoomController@index');
 Auth::routes();
-
+Route::post('/', 'RoomController@create');
 Route::get('/chat', 'ChatsController@index');
 Route::get('messages', 'ChatsController@fetchMessages');
 Route::post('messages', 'ChatsController@sendMessage');
