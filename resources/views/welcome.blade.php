@@ -122,7 +122,7 @@
             <div class="mychats">
                 <p >My chats</p>
                 @foreach($room as $name)
-                    {{$name -> name}}
+                     <a href="chat/{{$name -> url}}">{{$name -> name}}</a><br/>
                 @endforeach 
             </div>
         </div>

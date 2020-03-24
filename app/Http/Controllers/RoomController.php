@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\RoomUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class RoomController extends Controller
 
    
     public function index(){
-        $room = Room::wher('user_id',Auth::id())->get();
+        $room = Room::where('user_id',Auth::id())->get();
         return view('welcome',[
             'room' => $room
         ]);
@@ -59,6 +60,11 @@ class RoomController extends Controller
             'user_id'=>Auth::id(),
             'url'=>Str::random(),
         ]);
+        $userUrl = RoomUser::create([
+            'user_id'=>Auth::id(),
+            'room_id'=>$room->id,
+        ]);
+
         if($room){
             return redirect('/');
         }  
